@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package pbservice;
+
+message Params {
+    string message = 1;
+}
+
+service Server {
+    rpc Send (Params) returns (Params) {}
+}
+
+service Adapter {
+    rpc Send (Params) returns (Params) {}
+}

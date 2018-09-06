@@ -1,0 +1,31 @@
+version: '2'
+services:
+
+  adapter:
+    container_name: grpc_adapter
+    image: golang:1.8.3-alpine
+    volumes:
+      - .:/go/src/github.com/munya/grpc_test.git
+    working_dir: /go/src/github.com/munya/grpc_test.git/adapter
+    command: go run main.go
+    ports:
+      - "30301:30301"
+
+  server:
+    container_name: grpc_server
+    image: golang:1.8.3-alpine
+    volumes:
+      - .:/go/src/github.com/munya/grpc_test.git
+    working_dir: /go/src/github.com/munya/grpc_test.git/server
+    command: go run main.go
+    ports:
+      - "30302:30302"
+
+
+  client:
+    container_name: grpc_client
+    image: golang:1.8.3-alpine
+    volumes:
+    - .:/go/src/github.com/munya/grpc_test.git
+    working_dir: /go/src/github.com/munya/grpc_test.git/client
+    command: go run main.go polo
